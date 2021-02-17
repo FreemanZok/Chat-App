@@ -10,11 +10,11 @@ app.get("/", function (request, response) {
 });
 
 io.on("connection", function (socket) {
-  socket.on("msg", function (message) {
+  socket.on("chat.message", function (message) {
 
     console.log("ya zahra" );
 
-    io.emit("msg", message)
+    io.emit("chat.message", message)
     
   });
   console.log("socket is connected")

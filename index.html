@@ -33,22 +33,23 @@
         new Vue({
             el: "#chat",
             data:{
-                message:"ali zoka is here",
+                message:"",
                 messages:[],
             },
             ready: function(){
 
-                socket.on("msg", function(message){
+                socket.on("chat.message", function(message){
                     this.messages.push(message)
-                }.bind(this))
+                    console.log(message)
+                }.bind(this));
 
-                console.log(this.messages)
+                // console.log(this.messages)
             },
             methods: {
                 send: function (e) {
-                    e.preventDefault();
-                    this.messages.push(this.message)
-                    console.log(this.messages);                  
+                    socket.emit('chat.message', this.message)
+                    e.preventDefault();    
+                    this.message=""              
                 }
             }
         });
