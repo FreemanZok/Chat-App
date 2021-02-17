@@ -16,15 +16,15 @@
     </div>
     <div class="box">
         <ul id="message">
-            <li v-repeat="message : messages">{{message}}</li>
+            <li v-for="message in messages"  :key="message">{{message}}</li>
         </ul>
         <form>
             <input v-model="message">
             <button @click="send">send</button>
         </form>
     </div>
-
-    <script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 
     <script>
@@ -36,16 +36,19 @@
                 message:"ali zoka is here",
                 messages:[],
             },
-            ready:function(){
-                socket.on("chat.message", function(message){
+            ready: function(){
+
+                socket.on("msg", function(message){
                     this.messages.push(message)
                 }.bind(this))
-                console.log("i am ali zoka")
+
+                console.log(this.messages)
             },
             methods: {
                 send: function (e) {
-                    alert(this.message);
                     e.preventDefault();
+                    this.messages.push(this.message)
+                    console.log(this.messages);                  
                 }
             }
         });

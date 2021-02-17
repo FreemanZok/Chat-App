@@ -10,8 +10,14 @@ app.get("/", function (request, response) {
 });
 
 io.on("connection", function (socket) {
-  socket.on("chat.message", function (message) {
-    console.log("hello ali zoka" + message );
+  socket.on("msg", function (message) {
+
+    console.log("ya zahra" );
+
+    io.emit("msg", message)
+    
   });
   console.log("socket is connected")
 });
+
+
