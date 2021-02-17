@@ -6,7 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .box{
+            width: 80%;
+            border: solid 2px palevioletred;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .text-line{
+            width: 80%;
+            border-radius: 20px;
+            background: rgba(228, 228, 228, 0.644);
+            padding: 10px 30px;
+            font-size: 20px;
+            margin: 20px 0;
+            color: palevioletred;
+            list-style: none;
+        }
+        .input{
+            width: 100%;
+            margin-bottom: 10px;
+            height: 40px;
+            border-radius: 20px;
 
+        }
+        .submit{
+            padding: 20px;
+            width: 100%;
+            border: solid 2px palevioletred;
+            border-radius: 20px;
+
+
+        }
+        #message{
+            min-height: 300px;
+            background: yellow;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body id="chat">
@@ -16,11 +56,11 @@
     </div>
     <div class="box">
         <ul id="message">
-            <li v-for="message in messages"  :key="message">{{message}}</li>
+            <li class="text-line" v-for="message in messages"  :key="message">{{message}}</li>
         </ul>
-        <form>
-            <input v-model="message">
-            <button @click="send">send</button>
+        <form class="form">
+            <input class="input" v-model="message">
+            <button class="submit" @click="send">send</button>
         </form>
     </div>
     <script src="/socket.io/socket.io.js"></script>
@@ -43,7 +83,6 @@
                     console.log(message)
                 }.bind(this));
 
-                // console.log(this.messages)
             },
             methods: {
                 send: function (e) {

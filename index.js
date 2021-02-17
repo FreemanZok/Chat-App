@@ -13,10 +13,15 @@ io.on("connection", function (socket) {
   socket.on("chat.message", function (message) {
 
     console.log("ya zahra" );
-
     io.emit("chat.message", message)
     
   });
+
+  socket.on("disconnected", function(){
+    io.emit("chat.message", "User Disconnect")
+
+  })
+
   console.log("socket is connected")
 });
 
