@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body id="chat">
+    <div>
+        salam.
+        file is up
+    </div>
+    <div class="box">
+        <ul id="message">
+            <li v-repeat="message : messages">{{message}}</li>
+        </ul>
+        <form>
+            <input v-model="message">
+            <button @click="send">send</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+
+    <script>
+        var socket = io();
+
+        new Vue({
+            el: "#chat",
+            data:{
+                message:"ali zoka is here",
+                messages:[],
+            },
+            ready:function(){
+                socket.on("chat.message", function(message){
+                    this.messages.push(message)
+                }.bind(this))
+                console.log("i am ali zoka")
+            },
+            methods: {
+                send: function (e) {
+                    alert(this.message);
+                    e.preventDefault();
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
