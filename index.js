@@ -6,13 +6,11 @@ server.listen(3000);
 
 app.get("/", function (request, response) {
   response.sendFile(__dirname + "/index.html");
-  console.log("hello ali zoka" );
 });
 
 io.on("connection", function (socket) {
   socket.on("chat.message", function (message) {
 
-    console.log("ya zahra" );
     io.emit("chat.message", message)
     
   });
@@ -22,7 +20,7 @@ io.on("connection", function (socket) {
 
   })
 
-  console.log("socket is connected")
+  console.log("socket is connected on : http://localhost:3000/")
 });
 
 
